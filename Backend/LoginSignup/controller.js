@@ -79,8 +79,8 @@ const registerUsers = async (req, res) => {
             });
         }
         
-        // Hash password
-        const salt = await bcrypt.genSalt(10);
+        // Hash password with 12 salt rounds for enhanced security
+        const salt = await bcrypt.genSalt(12);
         const hash = await bcrypt.hash(password, salt);
         
         // Create new user with all fields
