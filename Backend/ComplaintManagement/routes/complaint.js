@@ -157,6 +157,18 @@ async function calculatePriority(category, hostelOrRoomNo) {
 }
 
 // ==========================
+// NOTIFICATION HELPERS
+// ==========================
+
+// Simulate sending a notification to admin for high priority cases
+function notifyAdmin(complaintId, priority) {
+  if (priority === "High") {
+    console.log(`[NOTIFICATION] High priority complaint created: ${complaintId}. Notifying building manager...`);
+    // In a real-world app, this would trigger an email or push notification
+  }
+}
+
+// ==========================
 // POST /
 // CREATE NEW COMPLAINT
 // ==========================
@@ -267,6 +279,9 @@ router.post("/", upload.single("image"), async (req, res, next) => {
       internalNotes: "",
       statusHistory: [{ status: "Pending", time: new Date() }],
     });
+
+    // Trigger admin notification for high priority issues
+    notifyAdmin(complaintId, priority);
 
     // Send success response
     res.status(201).json({
