@@ -182,6 +182,10 @@ const loginUsers = async (req, res) => {
             });
         }
         
+        // Update last login timestamp
+        user.lastLogin = new Date();
+        await user.save();
+
         // Create token
         const token = jwt.sign(
             { 
