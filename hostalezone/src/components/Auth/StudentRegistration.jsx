@@ -19,6 +19,8 @@ function StudentRegister() {
     profilePhoto: null,
   });
 
+  const [previewUrl, setPreviewUrl] = useState(null);
+
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -60,7 +62,13 @@ function StudentRegister() {
     const { name, value } = e.target;
 
     if (name === "profilePhoto") {
-      setStudent({ ...student, profilePhoto: e.target.files[0] });
+      const file = e.target.files[0];
+      setStudent({ ...student, profilePhoto: file });
+      if (file) {
+        setPreviewUrl(URL.createObjectURL(file));
+      } else {
+        setPreviewUrl(null);
+      }
     } else if (name === "studentId") {
       // Automatically convert to uppercase and restrict to "IT" + up to 8 digits
       const formattedValue = value.toUpperCase();
@@ -696,6 +704,13 @@ function StudentRegister() {
                 onChange={(e) => { handleChange(e); handleBlur(e); }} required
                 className={touched.profilePhoto && errors.profilePhoto ? "error-input" : ""} />
               {touched.profilePhoto && errors.profilePhoto && <span className="error-text">{errors.profilePhoto}</span>}
+              
+              {previewUrl && (
+                <div style={{ marginTop: '15px', textAlign: 'center' }}>
+                  <img src={previewUrl} alt="Preview" style={{ width: '100px', height: '100px', borderRadius: '50%', objectFit: 'cover', border: '3px solid #3b82f6' }} />
+                  <p style={{ fontSize: '12px', color: '#64748b', marginTop: '5px' }}>Profile Photo Preview</p>
+                </div>
+              )}
             </div>
 
             <button type="submit" className="submit-btn">Create Account</button>
