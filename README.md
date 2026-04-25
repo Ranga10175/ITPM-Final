@@ -9,11 +9,13 @@ A comprehensive hostel management system designed for SLIIT Campus.
 
 ## Features
 
-- Student Registration and Authentication
-- Booking Management
-- Complaint Management UI
-- Admin Dashboard
-- Notification System
+- Student Registration with **Profile Photo Preview**
+- Secure Authentication with enhanced password hashing (Bcrypt 12 rounds)
+- **Last Login Tracking** for student activity monitoring
+- Booking Management for Hostel Blocks (A, B, C)
+- **Priority-based Admin Notifications** for complaints
+- Complaint Management UI with duplicate detection
+- Virtual ID Card and Student Dashboard
 
 ## Getting Started
 
