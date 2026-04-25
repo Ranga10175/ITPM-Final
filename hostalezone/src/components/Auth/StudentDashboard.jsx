@@ -658,6 +658,11 @@ const StudentDashboard = () => {
                   <div style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem' }}>
                      <button onClick={() => setActiveSection('profile')} style={{ padding: '0.5rem 1rem', background: '#3b82f6', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', transition: 'all 0.2s' }}>Edit Profile</button>
                      <div style={{ padding: '0.5rem 1rem', background: 'rgba(59,130,246,0.1)', color: '#3b82f6', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 700 }}>{studentData.yearSemester || 'Year 1'}</div>
+                     {studentData.lastLogin && (
+                        <div style={{ padding: '0.5rem 1rem', background: 'rgba(100,116,139,0.1)', color: '#64748b', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600 }}>
+                          Last login: {new Date(studentData.lastLogin).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}
+                        </div>
+                      )}
                   </div>
                </div>
             </div>
